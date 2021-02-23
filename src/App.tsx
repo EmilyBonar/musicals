@@ -5,13 +5,7 @@ function App() {
 	const musicalData = useFetchMusicals(musicals);
 	console.log(musicalData);
 	return (
-		<div
-			className="grid p-4 lg:p-24 place-items-center"
-			style={{
-				backgroundImage:
-					"url(https://unsplash.com/photos/m3th3rIQ9-w/download?force=true&w=1920)",
-			}}
-		>
+		<div className="grid p-4 lg:p-24 place-items-center">
 			<div className="flex flex-wrap justify-center gap-4">
 				{musicalData.map((musical) => {
 					let tracklist = musical.data.tracks.items.map((track) => {
@@ -71,7 +65,7 @@ function MusicalCard(props: {
 }) {
 	const [flipped, setFlipped] = useState(false);
 	return (
-		<div className="flex flex-col overflow-hidden bg-gray-100 rounded shadow w-80 h-80">
+		<div className="flex flex-col overflow-hidden border-gray-800 rounded shadow-lg cursor-pointer w-80 h-80 hover:border-2">
 			<div className="w-full h-0">
 				<img
 					className="object-cover object-center w-full"
@@ -81,7 +75,7 @@ function MusicalCard(props: {
 			</div>
 			{flipped && (
 				<div
-					className="h-full p-2 overflow-x-hidden overflow-y-auto bg-white bg-opacity-80"
+					className="h-full p-2 overflow-x-hidden overflow-y-auto bg-white cursor-auto bg-opacity-90"
 					onClick={() => setFlipped(!flipped)}
 				>
 					<h1 className="text-2xl font-semibold text-center">
@@ -91,7 +85,7 @@ function MusicalCard(props: {
 					<ol className="list-decimal list-inside">
 						{props.tracklist.map((track, index) => (
 							<li key={index} className="flex flex-row">
-								<a href={track.link} target="_blank">
+								<a className="cursor-pointer" href={track.link} target="_blank">
 									{track.title}
 								</a>
 								<span className="flex-grow" />
