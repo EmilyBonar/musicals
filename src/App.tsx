@@ -5,13 +5,15 @@ function App() {
 	const [musicalsList, setMusicalsList] = useState<JSX.Element[]>([]);
 	useEffect(() => {
 		setMusicalsList(
-			musicals.map((musical) => (
-				<MusicalCard
-					title={musical.title}
-					image="https://austin.broadway.com/wp-content/uploads/2018/08/001_Show_Keyart_HAM-671x1065.jpg"
-					tracklist={["test"]}
-				/>
-			)),
+			musicals.map((musical) => {
+				return (
+					<MusicalCard
+						title={musical.title}
+						image="https://austin.broadway.com/wp-content/uploads/2018/08/001_Show_Keyart_HAM-671x1065.jpg"
+						tracklist={["test"]}
+					/>
+				);
+			}),
 		);
 	}, []);
 	console.log(musicalsList);
