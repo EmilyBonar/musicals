@@ -14,12 +14,20 @@ function App() {
 		>
 			<div className="flex flex-wrap justify-center gap-4">
 				{musicalData.map((musical) => {
-					let tracklist = musical.data.tracks.items.map((track) => track.name);
+					let tracklist = musical.data.tracks.items.map((track) => {
+						return {
+							title: track.name,
+							link: track.external_urls.spotify,
+							length: track.duration_ms,
+						};
+					});
 					return (
 						<MusicalCard
 							title={musical.info.title}
 							image={musical.data.images[0].url}
 							tracklist={tracklist}
+							composers={musical.info.composers}
+							premiered={musical.info.premiered}
 						/>
 					);
 				})}
@@ -51,14 +59,15 @@ function useFetchMusicals(musicals: Musical[]) {
 			{ info: musical, data: data },
 		]);
 	};
-	console.log(musicalData);
 	return musicalData;
 }
 
 function MusicalCard(props: {
 	title: string;
 	image: string;
-	tracklist: string[];
+	tracklist: { title: string; link: string; length: number }[];
+	composers: string[];
+	premiered: Date;
 }) {
 	const [flipped, setFlipped] = useState(false);
 	return (
@@ -75,10 +84,24 @@ function MusicalCard(props: {
 					className="h-full p-2 overflow-x-hidden overflow-y-auto bg-white bg-opacity-80"
 					onClick={() => setFlipped(!flipped)}
 				>
-					<h1 className="text-2xl font-semibold text-center">{props.title}</h1>
+					<h1 className="text-2xl font-semibold text-center">
+						{props.title} ({props.premiered.getFullYear()})
+					</h1>
+					<h2 className="text-lg text-center">{props.composers.join(", ")}</h2>
 					<ol className="list-decimal list-inside">
-						{props.tracklist.map((track) => (
-							<li>{track}</li>
+						{props.tracklist.map((track, index) => (
+							<li key={index} className="flex flex-row">
+								<a href={track.link} target="_blank">
+									{track.title}
+								</a>
+								<span className="flex-grow" />
+								<p>
+									{Math.floor(track.length / 1000 / 60)}:
+									{Math.floor((track.length / 1000) % 60)
+										.toString()
+										.padStart(2, "0")}
+								</p>
+							</li>
 						))}
 					</ol>
 				</div>
