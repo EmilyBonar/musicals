@@ -1,24 +1,8 @@
 import React, { useEffect, useState } from "react";
-import musicals from "./musicals";
+import { musicals, Musical } from "./musicals";
 
 function App() {
-	const [musicalsList, setMusicalsList] = useState<JSX.Element[]>([]);
-	useEffect(() => {
-		setMusicalsList(
-			musicals.map((musical) => {
-				fetch(`/.netlify/functions/getMusical?id=${musical.spotifyID}`)
-					.then((response) => response.json())
-					.then((data) => console.log(data));
-				return (
-					<MusicalCard
-						title={musical.title}
-						image="https://austin.broadway.com/wp-content/uploads/2018/08/001_Show_Keyart_HAM-671x1065.jpg"
-						tracklist={["test"]}
-					/>
-				);
-			}),
-		);
-	}, []);
+	const musicalData = useFetchMusicals(musicals);
 	return (
 		<div
 			className="grid w-screen h-screen bg-center bg-cover place-items-center"
@@ -28,10 +12,43 @@ function App() {
 			}}
 		>
 			<div className="flex flex-wrap justify-center w-3/4 gap-4 h-3/4">
-				{musicalsList}
+				{musicalData.map((musical) => {
+					let tracklist = musical.data.tracks.items.map((track) => track.name);
+					return (
+						<MusicalCard
+							title={musical.info.title}
+							image={musical.data.images[0].url}
+							tracklist={tracklist}
+						/>
+					);
+				})}
 			</div>
 		</div>
 	);
+}
+
+interface AllMusicalData {
+	info: Musical;
+	data: SpotifyApi.AlbumObjectFull;
+}
+
+function useFetchMusicals(musicals: Musical[]) {
+	const [musicalData, setMusicalData] = useState<AllMusicalData[]>([]);
+
+	useEffect(() => {
+		musicals.map((musical) => fetchMusicalData(musical));
+	}, [musicals]);
+
+	const fetchMusicalData = async (musical: Musical) => {
+		const response = await fetch(
+			`/.netlify/functions/getMusical?id=${musical.spotifyID}`,
+		);
+		const data = await response.json();
+		console.log(data);
+		setMusicalData([...musicalData, { info: musical, data: data }]);
+	};
+
+	return musicalData;
 }
 
 function MusicalCard(props: {
@@ -41,7 +58,7 @@ function MusicalCard(props: {
 }) {
 	const [flipped, setFlipped] = useState(false);
 	return (
-		<div className="flex flex-col w-64 overflow-hidden bg-gray-100 rounded shadow h-96">
+		<div className="flex flex-col overflow-hidden bg-gray-100 rounded shadow w-80 h-80">
 			<div className="w-full h-0">
 				<img
 					className="object-cover object-center w-full"
@@ -54,7 +71,7 @@ function MusicalCard(props: {
 					className="h-full p-2 overflow-x-hidden overflow-y-auto bg-white bg-opacity-80"
 					onClick={() => setFlipped(!flipped)}
 				>
-					<h1 className="text-xl font-semibold text-center">{props.title}</h1>
+					<h1 className="text-2xl font-semibold text-center">{props.title}</h1>
 					<ol className="list-decimal list-inside">
 						{props.tracklist.map((track) => (
 							<li>{track}</li>

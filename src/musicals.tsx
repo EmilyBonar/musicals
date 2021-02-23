@@ -1,4 +1,4 @@
-interface Musical {
+export interface Musical {
 	title: string;
 	composer: string[];
 	premiered: Date;
