@@ -96,6 +96,18 @@ export const musicals: Musical[] = [
 		premiered: new Date("2003"),
 		spotifyID: "4Ok0WpQf9ucxEbd0wJV5Cx",
 	},
+	{
+		title: "A Year with Frog and Toad",
+		composers: ["Robert Reale", "Willie Reale"],
+		premiered: new Date("2002"),
+		spotifyID: "3ro3pvqmDCqk324ZzfHwEJ",
+	},
+	{
+		title: "Caroline, Or Change",
+		composers: ["Jeanine Tesori", "Tony Kushner"],
+		premiered: new Date("November 30, 2003"),
+		spotifyID: "4xCBLHCoWZqUuqXB7dSdq9",
+	},
 ];
 
 export default musicals;
