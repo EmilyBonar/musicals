@@ -6,7 +6,7 @@ function App() {
 	console.log(musicalData);
 	return (
 		<div
-			className="grid p-24 place-items-center"
+			className="grid p-4 lg:p-24 place-items-center"
 			style={{
 				backgroundImage:
 					"url(https://unsplash.com/photos/m3th3rIQ9-w/download?force=true&w=1920)",
