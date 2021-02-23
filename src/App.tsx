@@ -6,6 +6,9 @@ function App() {
 	useEffect(() => {
 		setMusicalsList(
 			musicals.map((musical) => {
+				fetch(`/.netlify/functions/getMusical?id=${musical.spotifyID}`)
+					.then((response) => response.json())
+					.then((data) => console.log(data));
 				return (
 					<MusicalCard
 						title={musical.title}
@@ -16,7 +19,6 @@ function App() {
 			}),
 		);
 	}, []);
-	console.log(musicalsList);
 	return (
 		<div
 			className="grid w-screen h-screen bg-center bg-cover place-items-center"
