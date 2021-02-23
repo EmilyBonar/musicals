@@ -3,6 +3,7 @@ import { musicals, Musical } from "./musicals";
 
 function App() {
 	const musicalData = useFetchMusicals(musicals);
+	console.log(musicalData);
 	return (
 		<div
 			className="grid w-screen h-screen bg-center bg-cover place-items-center"
@@ -36,7 +37,8 @@ function useFetchMusicals(musicals: Musical[]) {
 	const [musicalData, setMusicalData] = useState<AllMusicalData[]>([]);
 
 	useEffect(() => {
-		musicals.map((musical) => fetchMusicalData(musical));
+		setMusicalData([]);
+		musicals.forEach((musical) => fetchMusicalData(musical));
 	}, [musicals]);
 
 	const fetchMusicalData = async (musical: Musical) => {
@@ -44,10 +46,12 @@ function useFetchMusicals(musicals: Musical[]) {
 			`/.netlify/functions/getMusical?id=${musical.spotifyID}`,
 		);
 		const data = await response.json();
-		console.log(data);
-		setMusicalData([...musicalData, { info: musical, data: data }]);
+		setMusicalData((musicalData) => [
+			...musicalData,
+			{ info: musical, data: data },
+		]);
 	};
-
+	console.log(musicalData);
 	return musicalData;
 }
 
