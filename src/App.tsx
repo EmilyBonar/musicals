@@ -1,6 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import musicals from "./musicals";
 
 function App() {
+	const [musicalsList, setMusicalsList] = useState<JSX.Element[]>([]);
+	useEffect(() => {
+		setMusicalsList(
+			musicals.map((musical) => (
+				<MusicalCard
+					title={musical.title}
+					image="https://austin.broadway.com/wp-content/uploads/2018/08/001_Show_Keyart_HAM-671x1065.jpg"
+					tracklist={["test"]}
+				/>
+			)),
+		);
+	}, []);
+	console.log(musicalsList);
 	return (
 		<div
 			className="grid w-screen h-screen bg-center bg-cover place-items-center"
@@ -10,21 +24,7 @@ function App() {
 			}}
 		>
 			<div className="flex flex-wrap justify-center w-3/4 gap-4 h-3/4">
-				<MusicalCard
-					title="Hamilton"
-					image="https://austin.broadway.com/wp-content/uploads/2018/08/001_Show_Keyart_HAM-671x1065.jpg"
-					tracklist={["test"]}
-				/>
-				<MusicalCard
-					title="Hamilton"
-					image="https://austin.broadway.com/wp-content/uploads/2018/08/001_Show_Keyart_HAM-671x1065.jpg"
-					tracklist={[]}
-				/>
-				<MusicalCard
-					title="Hamilton"
-					image="https://austin.broadway.com/wp-content/uploads/2018/08/001_Show_Keyart_HAM-671x1065.jpg"
-					tracklist={[]}
-				/>
+				{musicalsList}
 			</div>
 		</div>
 	);
