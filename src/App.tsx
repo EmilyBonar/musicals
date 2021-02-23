@@ -6,13 +6,13 @@ function App() {
 	console.log(musicalData);
 	return (
 		<div
-			className="grid w-screen h-screen bg-center bg-cover place-items-center"
+			className="grid p-24 place-items-center"
 			style={{
 				backgroundImage:
 					"url(https://unsplash.com/photos/m3th3rIQ9-w/download?force=true&w=1920)",
 			}}
 		>
-			<div className="flex flex-wrap justify-center w-3/4 gap-4 h-3/4">
+			<div className="flex flex-wrap justify-center gap-4">
 				{musicalData.map((musical) => {
 					let tracklist = musical.data.tracks.items.map((track) => track.name);
 					return (
