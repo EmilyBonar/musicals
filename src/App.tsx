@@ -65,7 +65,11 @@ function MusicalCard(props: {
 }) {
 	const [flipped, setFlipped] = useState(false);
 	return (
-		<div className="flex flex-col overflow-hidden border-gray-800 rounded shadow-lg cursor-pointer w-80 h-80 hover:border-2">
+		<div
+			className={`flex flex-col overflow-hidden border-gray-800 rounded shadow-lg cursor-pointer w-80 h-80 ${
+				flipped ? "hover:border-0" : "hover:border-2"
+			}`}
+		>
 			<div className="w-full h-0">
 				<img
 					className="object-cover object-center w-full"
