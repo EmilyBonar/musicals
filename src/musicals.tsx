@@ -108,6 +108,24 @@ export const musicals: Musical[] = [
 		premiered: new Date("November 30, 2003"),
 		spotifyID: "4xCBLHCoWZqUuqXB7dSdq9",
 	},
+	{
+		title: "Hadestown",
+		composers: ["Anaïs Mitchell"],
+		premiered: new Date("2016"),
+		spotifyID: "1J1yxODbNlqKbwRqJxYJUP",
+	},
+	{
+		title: "Falsettos",
+		composers: ["William Finn"],
+		premiered: new Date("April 29, 1992"),
+		spotifyID: "4mCM4pXPU1JSsTNNEslE4v",
+	},
+	{
+		title: "A Strange Loop",
+		composers: ["Michael R. Jackson"],
+		premiered: new Date("May 3, 2019"),
+		spotifyID: "7vlAmEdZEOVdRUsB4fgrvC",
+	},
 ];
 
 export default musicals;
