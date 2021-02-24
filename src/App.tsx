@@ -86,24 +86,33 @@ function MusicalCard(props: {
 						{props.title} ({props.premiered.getFullYear()})
 					</h1>
 					<h2 className="text-lg text-center">{props.composers.join(", ")}</h2>
-					<ol className="list-decimal list-inside">
+					<ol className="pl-6 list-decimal">
 						{props.tracklist.map((track, index) => (
-							<li key={index} className="flex flex-row">
-								<a className="cursor-pointer" href={track.link} target="_blank">
-									{track.title}
-								</a>
-								<span className="flex-grow" />
-								<p>
-									{Math.floor(track.length / 1000 / 60)}:
-									{Math.floor((track.length / 1000) % 60)
-										.toString()
-										.padStart(2, "0")}
-								</p>
+							<li key={index} className="">
+								<TrackItem track={track} />
 							</li>
 						))}
 					</ol>
 				</div>
 			)}
+		</div>
+	);
+}
+
+function TrackItem(props: {
+	track: { title: string; link: string; length: number };
+}) {
+	return (
+		<div className="inline-flex flex-row justify-between w-full">
+			<a className="cursor-pointer" href={props.track.link} target="_blank">
+				{props.track.title}
+			</a>
+			<p className="text-right">
+				{Math.floor(props.track.length / 1000 / 60)}:
+				{Math.floor((props.track.length / 1000) % 60)
+					.toString()
+					.padStart(2, "0")}
+			</p>
 		</div>
 	);
 }
