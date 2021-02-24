@@ -126,6 +126,24 @@ export const musicals: Musical[] = [
 		premiered: new Date("May 3, 2019"),
 		spotifyID: "7vlAmEdZEOVdRUsB4fgrvC",
 	},
+	{
+		title: "Wicked",
+		composers: ["Stephen Schwartz"],
+		premiered: new Date("May 28, 2003"),
+		spotifyID: "1woCvthHJakakroP6dXNxs",
+	},
+	{
+		title: "Fiddler on the Roof",
+		composers: ["Jerry Bock", "Sheldon Harnick"],
+		premiered: new Date("1964"),
+		spotifyID: "6tnboImND0Ds2wKRlE4ppJ",
+	},
+	{
+		title: "Grease",
+		composers: ["Jim Jacobs", "Warren Casey", "John Farrar"],
+		premiered: new Date("1971"),
+		spotifyID: "5jxfJ5orMpRKB1EJ9UO8al",
+	},
 ];
 
 export default musicals;
