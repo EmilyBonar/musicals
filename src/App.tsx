@@ -20,8 +20,8 @@ function App() {
 					setSortType(value);
 				}}
 			/>
-			<div className="grid p-4 lg:p-24 place-items-center">
-				<div className="flex flex-wrap justify-center gap-4">
+			<div className="grid p-4 lg:px-24 lg:py-12 place-items-center">
+				<div className="flex flex-wrap justify-center">
 					{[...musicalData]
 						.sort(
 							sortType === "ascending"
@@ -111,17 +111,15 @@ function MusicalCard(props: {
 	const [flipped, setFlipped] = useState(false);
 	return (
 		<div
-			className={`flex flex-col overflow-hidden border-gray-800 rounded shadow-lg cursor-pointer w-80 h-80 ${
+			className={`flex flex-col overflow-hidden border-gray-800 rounded shadow-lg cursor-pointer w-80 h-80 m-2 ${
 				flipped ? "hover:border-0" : "hover:border-2"
 			}`}
 		>
-			<div className="w-full h-0">
-				<img
-					className="object-cover object-center w-full"
-					src={props.image}
-					onClick={() => setFlipped(!flipped)}
-				/>
-			</div>
+			<img
+				className="object-cover object-center w-full h-full"
+				src={props.image}
+				onClick={() => setFlipped(!flipped)}
+			/>
 			{flipped && (
 				<CardOverlay
 					onClick={() => setFlipped(!flipped)}
