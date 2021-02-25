@@ -130,7 +130,7 @@ export const musicals: Musical[] = [
 		title: "Wicked",
 		composers: ["Stephen Schwartz"],
 		premiered: new Date("May 28, 2003"),
-		spotifyID: "1woCvthHJakakroP6dXNxs",
+		spotifyID: "0nRp91j7bu9z474yNajAsA",
 	},
 	{
 		title: "Fiddler on the Roof",
@@ -142,7 +142,7 @@ export const musicals: Musical[] = [
 		title: "Grease",
 		composers: ["Jim Jacobs", "Warren Casey", "John Farrar"],
 		premiered: new Date("1971"),
-		spotifyID: "5jxfJ5orMpRKB1EJ9UO8al",
+		spotifyID: "73c4HyqfXfzteWaWog01jQ",
 	},
 	{
 		title: "Les Misérables",
