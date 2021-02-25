@@ -3,30 +3,51 @@ import { musicals, Musical } from "./musicals";
 
 function App() {
 	const musicalData = useFetchMusicals(musicals);
-	console.log(musicalData);
+	const [sortType, setSortType] = useState<
+		"descending" | "ascending" | "random"
+	>("descending");
+	const descendingSort = (a: AllMusicalData, b: AllMusicalData) =>
+		b.info.premiered.getTime() - a.info.premiered.getTime();
+	const ascendingSort = (a: AllMusicalData, b: AllMusicalData) =>
+		a.info.premiered.getTime() - b.info.premiered.getTime();
+	const randomSort = (a: AllMusicalData, b: AllMusicalData) =>
+		0.5 - Math.random();
+
 	return (
 		<>
-			<HeaderBar />
+			<HeaderBar
+				onChange={(value: "ascending" | "descending" | "random") => {
+					setSortType(value);
+				}}
+			/>
 			<div className="grid p-4 lg:p-24 place-items-center">
 				<div className="flex flex-wrap justify-center gap-4">
-					{musicalData.map((musical) => {
-						let tracklist = musical.data.tracks.items.map((track) => {
-							return {
-								title: track.name,
-								link: track.external_urls.spotify,
-								length: track.duration_ms,
-							};
-						});
-						return (
-							<MusicalCard
-								title={musical.info.title}
-								image={musical.data.images[0].url}
-								tracklist={tracklist}
-								composers={musical.info.composers}
-								premiered={musical.info.premiered}
-							/>
-						);
-					})}
+					{[...musicalData]
+						.sort(
+							sortType === "ascending"
+								? ascendingSort
+								: sortType === "descending"
+								? descendingSort
+								: randomSort,
+						)
+						.map((musical) => {
+							let tracklist = musical.data.tracks.items.map((track) => {
+								return {
+									title: track.name,
+									link: track.external_urls.spotify,
+									length: track.duration_ms,
+								};
+							});
+							return (
+								<MusicalCard
+									title={musical.info.title}
+									image={musical.data.images[0].url}
+									tracklist={tracklist}
+									composers={musical.info.composers}
+									premiered={musical.info.premiered}
+								/>
+							);
+						})}
 				</div>
 			</div>
 		</>
@@ -59,13 +80,17 @@ function useFetchMusicals(musicals: Musical[]) {
 	return musicalData;
 }
 
-function HeaderBar() {
+function HeaderBar(props: { onChange: Function }) {
 	return (
 		<header className="flex justify-between w-full p-2 bg-black bg-opacity-80">
 			<p className="text-3xl font-extrabold tracking-wide text-white">
 				MusicalsFYI
 			</p>
-			<select name="sort" id="">
+			<select
+				name="sort"
+				id=""
+				onChange={(e) => props.onChange(e.target.value)}
+			>
 				<option value="descending" selected>
 					Date, descending
 				</option>
