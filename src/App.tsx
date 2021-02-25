@@ -26,10 +26,14 @@ function App() {
 			<div className="grid min-h-screen p-4 lg:px-24 lg:py-12 place-items-center">
 				<div className="flex flex-wrap justify-center">
 					{[...musicalData]
-						.filter((musical) =>
-							musical.info.title
-								.toLowerCase()
-								.includes(searchText.toLowerCase()),
+						.filter(
+							(musical) =>
+								musical.info.title
+									.toLowerCase()
+									.includes(searchText.toLowerCase()) ||
+								musical.info.composers.some((person) =>
+									person.toLowerCase().includes(searchText.toLowerCase()),
+								),
 						)
 						.sort(
 							sortType === "ascending"
