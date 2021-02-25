@@ -108,14 +108,7 @@ function HeaderBar(props: { onChange: Function }) {
 function FooterBar() {
 	return (
 		<footer className="flex justify-center w-full p-2 bg-black bg-opacity-90">
-			<form
-				name="suggestions"
-				onSubmit={(e) => {
-					e.preventDefault();
-					((e.target as HTMLFormElement).firstChild as HTMLInputElement).value =
-						"";
-				}}
-			>
+			<form name="suggestions">
 				<input
 					className="p-2 m-1 text-gray-200 bg-gray-900 rounded"
 					placeholder="Suggest a new musical title"
