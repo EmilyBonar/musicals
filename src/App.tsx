@@ -118,11 +118,13 @@ function MusicalCard(props: {
 				flipped ? "hover:border-0" : "hover:border-2"
 			}`}
 		>
-			<img
-				className="object-cover object-center w-full h-full"
-				src={props.image}
-				onClick={() => setFlipped(!flipped)}
-			/>
+			<div className="w-full h-0">
+				<img
+					className="object-cover object-center"
+					src={props.image}
+					onClick={() => setFlipped(!flipped)}
+				/>
+			</div>
 			{flipped && (
 				<CardOverlay
 					onClick={() => setFlipped(!flipped)}
