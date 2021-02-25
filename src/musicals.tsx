@@ -144,6 +144,53 @@ export const musicals: Musical[] = [
 		premiered: new Date("1971"),
 		spotifyID: "5jxfJ5orMpRKB1EJ9UO8al",
 	},
+	{
+		title: "Les Misérables",
+		composers: ["Claude-Michel Schönberg", "Alain Boublil", "Jean-Marc Natel"],
+		premiered: new Date("September 24, 1980"),
+		spotifyID: "4h0K87rOHZXeuOqeXAsah8",
+	},
+	{
+		title: "The Phantom of the Opera",
+		composers: ["Andrew Lloyd Webber", "Charles Hart", "Richard Stilgoe"],
+		premiered: new Date("October 9, 1986"),
+		spotifyID: "4h0K87rOHZXeuOqeXAsah8",
+	},
+	{
+		title: "Cats",
+		composers: [
+			"Andrew Lloyd Webber",
+			"T.S. Eliot",
+			"Trevor Nunn",
+			"Richard Stilgoe",
+		],
+		premiered: new Date("May 11, 1981"),
+		spotifyID: "7dIID5jd8V3fR2NXkonyD3",
+	},
+	{
+		title: "Natasha, Pierre & The Great Comet of 1812",
+		composers: ["Dave Malloy"],
+		premiered: new Date("October 16, 2012"),
+		spotifyID: "3Ohwm7WsUS6AJd56VnNlJX",
+	},
+	{
+		title: "Sweeney Todd: The Demon Barber of Fleet Street",
+		composers: ["Stephen Sondheim"],
+		premiered: new Date("1979"),
+		spotifyID: "0CgTKS2HmWc3JeI9Fit2vX",
+	},
+	{
+		title: "Into the Woods",
+		composers: ["Stephen Sondheim"],
+		premiered: new Date("1986"),
+		spotifyID: "728ZIip1mzws5PJrxbQo4T",
+	},
+	{
+		title: "West Side Story",
+		composers: ["Stephen Sondheim"],
+		premiered: new Date("1957"),
+		spotifyID: "2tMSkFy27VIZjBum94KbpD",
+	},
 ];
 
 export default musicals;
