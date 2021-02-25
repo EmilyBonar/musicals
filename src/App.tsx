@@ -137,9 +137,9 @@ function MusicalCard(props: {
 				flipped ? "hover:border-0" : "hover:border-2"
 			}`}
 		>
-			<div className="w-full h-0">
+			<div className="h-0 ">
 				<img
-					className="object-cover object-center"
+					className="object-center w-80 h-80"
 					src={props.image}
 					onClick={() => setFlipped(!flipped)}
 				/>
