@@ -99,7 +99,7 @@ function HeaderBar(props: { onSortChange: Function; onSearch: Function }) {
 				</span>
 			</p>
 			<input
-				className="w-1/3 p-4 text-gray-100 bg-gray-900 rounded-full"
+				className="w-1/3 p-4 py-2 text-gray-100 bg-gray-900 rounded-full"
 				placeholder="Search"
 				onChange={(e) => props.onSearch(e.target.value)}
 			></input>
