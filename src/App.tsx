@@ -5,28 +5,31 @@ function App() {
 	const musicalData = useFetchMusicals(musicals);
 	console.log(musicalData);
 	return (
-		<div className="grid p-4 lg:p-24 place-items-center">
-			<div className="flex flex-wrap justify-center gap-4">
-				{musicalData.map((musical) => {
-					let tracklist = musical.data.tracks.items.map((track) => {
-						return {
-							title: track.name,
-							link: track.external_urls.spotify,
-							length: track.duration_ms,
-						};
-					});
-					return (
-						<MusicalCard
-							title={musical.info.title}
-							image={musical.data.images[0].url}
-							tracklist={tracklist}
-							composers={musical.info.composers}
-							premiered={musical.info.premiered}
-						/>
-					);
-				})}
+		<>
+			<HeaderBar />
+			<div className="grid p-4 lg:p-24 place-items-center">
+				<div className="flex flex-wrap justify-center gap-4">
+					{musicalData.map((musical) => {
+						let tracklist = musical.data.tracks.items.map((track) => {
+							return {
+								title: track.name,
+								link: track.external_urls.spotify,
+								length: track.duration_ms,
+							};
+						});
+						return (
+							<MusicalCard
+								title={musical.info.title}
+								image={musical.data.images[0].url}
+								tracklist={tracklist}
+								composers={musical.info.composers}
+								premiered={musical.info.premiered}
+							/>
+						);
+					})}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
@@ -54,6 +57,23 @@ function useFetchMusicals(musicals: Musical[]) {
 		]);
 	};
 	return musicalData;
+}
+
+function HeaderBar() {
+	return (
+		<header className="flex justify-between w-full p-2 bg-black bg-opacity-80">
+			<p className="text-3xl font-extrabold tracking-wide text-white">
+				MusicalsFYI
+			</p>
+			<select name="sort" id="">
+				<option value="descending" selected>
+					Date, descending
+				</option>
+				<option value="ascending">Date, ascending</option>
+				<option value="random">Random</option>
+			</select>
+		</header>
+	);
 }
 
 function MusicalCard(props: {
