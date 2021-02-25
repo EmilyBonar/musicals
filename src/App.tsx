@@ -82,7 +82,7 @@ function useFetchMusicals(musicals: Musical[]) {
 
 function HeaderBar(props: { onChange: Function }) {
 	return (
-		<header className="flex justify-between w-full p-2 bg-black bg-opacity-80">
+		<header className="flex justify-between w-full p-2 bg-black bg-opacity-90">
 			<p className="text-3xl font-extrabold tracking-wide text-white">
 				Musicals
 				<span className="text-transparent bg-clip-text from-red-500 to-blue-500 bg-gradient-to-br">
@@ -91,7 +91,7 @@ function HeaderBar(props: { onChange: Function }) {
 			</p>
 			<select
 				name="sort"
-				id=""
+				className="p-1 text-gray-100 bg-gray-900 rounded"
 				onChange={(e) => props.onChange(e.target.value)}
 			>
 				<option value="descending" selected>
