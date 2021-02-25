@@ -20,7 +20,7 @@ function App() {
 					setSortType(value);
 				}}
 			/>
-			<div className="grid p-4 lg:px-24 lg:py-12 place-items-center">
+			<div className="grid min-h-screen p-4 lg:px-24 lg:py-12 place-items-center">
 				<div className="flex flex-wrap justify-center">
 					{[...musicalData]
 						.sort(
