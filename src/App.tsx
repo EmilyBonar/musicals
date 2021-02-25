@@ -6,6 +6,8 @@ function App() {
 	const [sortType, setSortType] = useState<
 		"descending" | "ascending" | "random"
 	>("descending");
+	const [searchText, setSearchText] = useState("");
+
 	const descendingSort = (a: AllMusicalData, b: AllMusicalData) =>
 		b.info.premiered.getTime() - a.info.premiered.getTime();
 	const ascendingSort = (a: AllMusicalData, b: AllMusicalData) =>
@@ -16,13 +18,19 @@ function App() {
 	return (
 		<>
 			<HeaderBar
-				onChange={(value: "ascending" | "descending" | "random") => {
+				onSortChange={(value: "ascending" | "descending" | "random") => {
 					setSortType(value);
 				}}
+				onSearch={(value: string) => setSearchText(value)}
 			/>
 			<div className="grid min-h-screen p-4 lg:px-24 lg:py-12 place-items-center">
 				<div className="flex flex-wrap justify-center">
 					{[...musicalData]
+						.filter((musical) =>
+							musical.info.title
+								.toLowerCase()
+								.includes(searchText.toLowerCase()),
+						)
 						.sort(
 							sortType === "ascending"
 								? ascendingSort
@@ -81,7 +89,7 @@ function useFetchMusicals(musicals: Musical[]) {
 	return musicalData;
 }
 
-function HeaderBar(props: { onChange: Function }) {
+function HeaderBar(props: { onSortChange: Function; onSearch: Function }) {
 	return (
 		<header className="flex justify-between w-full p-2 bg-black bg-opacity-90">
 			<p className="text-3xl font-extrabold tracking-wide text-white">
@@ -90,10 +98,15 @@ function HeaderBar(props: { onChange: Function }) {
 					FYI
 				</span>
 			</p>
+			<input
+				className="w-1/3 p-4 text-gray-100 bg-gray-900 rounded-full"
+				placeholder="Search"
+				onChange={(e) => props.onSearch(e.target.value)}
+			></input>
 			<select
 				name="sort"
 				className="p-1 text-gray-100 bg-gray-900 rounded"
-				onChange={(e) => props.onChange(e.target.value)}
+				onChange={(e) => props.onSortChange(e.target.value)}
 			>
 				<option value="descending" selected>
 					Date, descending
