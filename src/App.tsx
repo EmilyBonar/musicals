@@ -84,7 +84,10 @@ function HeaderBar(props: { onChange: Function }) {
 	return (
 		<header className="flex justify-between w-full p-2 bg-black bg-opacity-80">
 			<p className="text-3xl font-extrabold tracking-wide text-white">
-				MusicalsFYI
+				Musicals
+				<span className="text-transparent bg-clip-text from-red-500 to-blue-500 bg-gradient-to-br">
+					FYI
+				</span>
 			</p>
 			<select
 				name="sort"
