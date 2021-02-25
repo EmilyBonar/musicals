@@ -109,14 +109,19 @@ function FooterBar() {
 	return (
 		<footer className="flex justify-center w-full p-2 bg-black bg-opacity-90">
 			<form
-				data-netlify="true"
 				name="suggestions"
-				onSubmit={(e) => e.preventDefault()}
+				onSubmit={(e) => {
+					e.preventDefault();
+					((e.target as HTMLFormElement).firstChild as HTMLInputElement).value =
+						"";
+				}}
 			>
 				<input
 					className="p-2 m-1 text-gray-200 bg-gray-900 rounded"
 					placeholder="Suggest a new musical title"
+					name="title"
 				></input>
+				<input type="hidden" name="form-name" value="suggestions" />
 				<button className="p-2 m-1 text-gray-200 bg-gray-900 rounded">
 					Submit
 				</button>
