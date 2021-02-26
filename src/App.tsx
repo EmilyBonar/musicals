@@ -103,7 +103,7 @@ function HeaderBar(props: { onSortChange: Function; onSearch: Function }) {
 				</span>
 			</p>
 			<input
-				className="w-1/2 max-w-3xl p-4 py-2 text-gray-100 bg-gray-900 rounded-full"
+				className="w-1/2 max-w-3xl p-4 py-2 text-gray-100 bg-gray-900 rounded-full outline-none focus:ring-2 ring-gray-500"
 				placeholder="Search"
 				onChange={(e) => props.onSearch(e.target.value)}
 			></input>
@@ -127,8 +127,8 @@ function FooterBar() {
 		<footer className="flex justify-center w-full p-2 bg-black bg-opacity-90">
 			<form name="suggestions" method="post">
 				<input
-					className="p-2 m-1 text-gray-200 bg-gray-900 rounded"
-					placeholder="Suggest a new musical title"
+					className="p-2 m-1 text-gray-200 bg-gray-900 rounded outline-none focus:ring-2 ring-gray-500"
+					placeholder="Suggest a new musical"
 					name="title"
 					minLength={1}
 					maxLength={100}
