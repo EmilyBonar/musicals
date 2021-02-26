@@ -88,7 +88,7 @@ export const musicals: Musical[] = [
 		title: "RENT",
 		composers: ["Jonathan Larson"],
 		premiered: new Date("January 25, 1996"),
-		spotifyID: "7JR7tGOAvqFSpVmDlCzHIJ",
+		spotifyID: "5H8ZhTwdPIwax6ugXMqwBk",
 	},
 	{
 		title: "Avenue Q",
@@ -177,7 +177,7 @@ export const musicals: Musical[] = [
 		title: "Sweeney Todd: The Demon Barber of Fleet Street",
 		composers: ["Stephen Sondheim"],
 		premiered: new Date("1979"),
-		spotifyID: "0CgTKS2HmWc3JeI9Fit2vX",
+		spotifyID: "2q6InM859RCsSQOjHWNHk2",
 	},
 	{
 		title: "Into the Woods",
