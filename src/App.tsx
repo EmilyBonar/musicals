@@ -142,10 +142,16 @@ function FooterBar() {
 	);
 }
 
+interface TrackDetails {
+	title: string;
+	link: string;
+	length: number;
+}
+
 function MusicalCard(props: {
 	title: string;
 	image: string;
-	tracklist: { title: string; link: string; length: number }[];
+	tracklist: TrackDetails[];
 	composers: string[];
 	premiered: Date;
 }) {
@@ -180,7 +186,7 @@ function CardOverlay(props: {
 	onClick: Function;
 	title: string;
 	premiered: Date;
-	tracklist: { title: string; link: string; length: number }[];
+	tracklist: TrackDetails[];
 	composers: string[];
 }) {
 	return (
@@ -203,9 +209,7 @@ function CardOverlay(props: {
 	);
 }
 
-function TrackItem(props: {
-	track: { title: string; link: string; length: number };
-}) {
+function TrackItem(props: { track: TrackDetails }) {
 	let timestamp =
 		Math.floor(props.track.length / 1000 / 60) +
 		":" +
