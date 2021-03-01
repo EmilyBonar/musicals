@@ -8,18 +8,20 @@ exports.handler = async (event, context) => {
 		clientId: process.env.ClientID,
 		clientSecret: process.env.ClientSecret,
 	});
+	let response;
 	let data;
 	try {
 		let credentials = await spotifyApi.clientCredentialsGrant();
 		spotifyApi.setAccessToken(credentials.body["access_token"]);
 
-		data = (await spotifyApi.getAlbum(id, {})).body;
+		response = await spotifyApi.getAlbum(id, {});
+		data = response.body;
 	} catch (err) {
 		console.log("Something went wrong when retrieving an access token", err);
 	}
 
 	return {
-		statusCode: 200,
+		statusCode: response.statusCode,
 		body: JSON.stringify(data),
 		headers: {
 			"Access-Control-Allow-Origin": "*",
