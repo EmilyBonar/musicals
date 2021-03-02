@@ -77,18 +77,23 @@ function useFetchMusicals(musicals: Musical[]) {
 
 	useEffect(() => {
 		setMusicalData([]);
-		musicals.forEach((musical) => fetchMusicalData(musical));
+		fetchMusicalData(musicals);
 	}, [musicals]);
 
-	const fetchMusicalData = async (musical: Musical) => {
-		const response = await fetch(
-			`/.netlify/functions/getMusical?id=${musical.spotifyID}`,
+	const fetchMusicalData = async (musicals: Musical[]) => {
+		let ids = musicals.map((musical) => musical.spotifyID);
+		const response = await fetch(`/.netlify/functions/getMusicals?id=${ids}`);
+		const data: SpotifyApi.AlbumObjectFull[] = await response.json();
+		console.log(data);
+
+		setMusicalData(
+			musicals.map((musicalInfo) => {
+				return {
+					info: musicalInfo,
+					data: data.find((album) => album.id == musicalInfo.spotifyID),
+				} as AllMusicalData;
+			}),
 		);
-		const data = await response.json();
-		setMusicalData((musicalData) => [
-			...musicalData,
-			{ info: musical, data: data },
-		]);
 	};
 	return musicalData;
 }
