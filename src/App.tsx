@@ -76,7 +76,6 @@ function useFetchMusicals(musicals: Musical[]) {
 	const [musicalData, setMusicalData] = useState<AllMusicalData[]>([]);
 
 	useEffect(() => {
-		setMusicalData([]);
 		fetchMusicalData(musicals);
 	}, [musicals]);
 
