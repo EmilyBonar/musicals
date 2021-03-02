@@ -154,7 +154,7 @@ export const musicals: Musical[] = [
 		title: "The Phantom of the Opera",
 		composers: ["Andrew Lloyd Webber", "Charles Hart", "Richard Stilgoe"],
 		premiered: new Date("October 9, 1986"),
-		spotifyID: "4h0K87rOHZXeuOqeXAsah8",
+		spotifyID: "36bEg6FTBaZGLg9ngJZIU6",
 	},
 	{
 		title: "Cats",
@@ -190,6 +190,18 @@ export const musicals: Musical[] = [
 		composers: ["Stephen Sondheim"],
 		premiered: new Date("1957"),
 		spotifyID: "2tMSkFy27VIZjBum94KbpD",
+	},
+	{
+		title: "Mamma Mia!",
+		composers: ["Benny Andersson", "Björn Ulvaeus"],
+		premiered: new Date("April 6, 1999"),
+		spotifyID: "6LFLGHU6Rw2sAMrjax6f5t",
+	},
+	{
+		title: "Hello, Dolly!",
+		composers: ["Jerry Herman"],
+		premiered: new Date("November 18, 1963"),
+		spotifyID: "2cDK1Eg3LONqzmRas1PpkM",
 	},
 ];
 
