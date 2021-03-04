@@ -26,7 +26,7 @@ function App() {
 				}}
 				onSearch={(value: string) => setSearchText(value)}
 			/>
-			<div className="grid min-h-screen p-4 lg:px-24 lg:py-12 place-items-center">
+			<div className="grid justify-center min-h-screen p-4 lg:px-24 lg:py-12">
 				<div className="flex flex-wrap justify-center">
 					{[...musicalData]
 						.filter(
