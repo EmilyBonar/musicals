@@ -16,16 +16,12 @@ export default function MusicalCard(props: {
 	const [flipped, setFlipped] = useState(false);
 	return (
 		<div
-			className={`flex flex-col overflow-hidden border-gray-800 rounded shadow-lg cursor-pointer w-80 h-80 m-2 ${
+			className={`flex flex-col overflow-hidden border-gray-800 rounded-lg shadow-lg cursor-pointer w-80 h-80 m-2 ${
 				flipped ? "hover:border-0" : "hover:border-2"
 			}`}
 		>
-			<div className="h-0 ">
-				<img
-					className="object-center w-80 h-80"
-					src={props.image}
-					onClick={() => setFlipped(!flipped)}
-				/>
+			<div className="h-0 " onClick={() => setFlipped(!flipped)}>
+				<img className="object-center w-full h-80" src={props.image} />
 			</div>
 			{flipped && (
 				<CardOverlay
