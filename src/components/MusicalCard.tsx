@@ -14,10 +14,13 @@ export default function MusicalCard(props: {
 	premiered: Date;
 }) {
 	const [flipped, setFlipped] = useState(false);
+	let tilt = ["hover:rotate-1", "hover:-rotate-1"][
+		Math.floor(Math.random() * 2)
+	];
 	return (
 		<div
-			className={`flex flex-col overflow-hidden border-gray-800 rounded-lg shadow-lg cursor-pointer w-80 h-80 m-2 ${
-				flipped ? "hover:border-0" : "hover:border-2"
+			className={`flex flex-col overflow-hidden border-gray-800 rounded-lg shadow-lg cursor-pointer w-80 h-80 m-2 transform transition-transform ${
+				flipped ? "hover:border-0 duration-75" : `hover:border-2 ${tilt}`
 			}`}
 		>
 			<div className="h-0 " onClick={() => setFlipped(!flipped)}>
