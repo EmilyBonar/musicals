@@ -21,7 +21,10 @@ export default function MusicalCard(props: {
 			}`}
 		>
 			<div className="h-0 " onClick={() => setFlipped(!flipped)}>
-				<img className="object-center w-full h-80" src={props.image} />
+				<img
+					className="object-cover object-center w-full h-80"
+					src={props.image}
+				/>
 			</div>
 			{flipped && (
 				<CardOverlay
