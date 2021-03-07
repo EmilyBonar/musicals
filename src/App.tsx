@@ -46,22 +46,7 @@ function App() {
 								: randomSort,
 						)
 						.map((musical) => {
-							let tracklist = musical.data.tracks.items.map((track) => {
-								return {
-									title: track.name,
-									link: track.external_urls.spotify,
-									length: track.duration_ms,
-								};
-							});
-							return (
-								<MusicalCard
-									title={musical.info.title}
-									image={musical.data.images[0].url}
-									tracklist={tracklist}
-									composers={musical.info.composers}
-									premiered={musical.info.premiered}
-								/>
-							);
+							return <MusicalCard musical={musical} />;
 						})}
 				</div>
 			</div>
@@ -70,7 +55,7 @@ function App() {
 	);
 }
 
-interface AllMusicalData {
+export interface AllMusicalData {
 	info: Musical;
 	data: SpotifyApi.AlbumObjectFull;
 }

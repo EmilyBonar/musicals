@@ -1,18 +1,7 @@
 import React, { useState } from "react";
+import { AllMusicalData } from "../App";
 
-interface TrackDetails {
-	title: string;
-	link: string;
-	length: number;
-}
-
-export default function MusicalCard(props: {
-	title: string;
-	image: string;
-	tracklist: TrackDetails[];
-	composers: string[];
-	premiered: Date;
-}) {
+export default function MusicalCard(props: { musical: AllMusicalData }) {
 	const [flipped, setFlipped] = useState(false);
 	let tilt = ["hover:rotate-1", "hover:-rotate-1"][
 		Math.floor(Math.random() * 2)
@@ -26,60 +15,63 @@ export default function MusicalCard(props: {
 			<div className="h-0 " onClick={() => setFlipped(!flipped)}>
 				<img
 					className="object-cover object-center w-full h-80"
-					src={props.image}
+					src={props.musical.data.images[0].url}
 				/>
 			</div>
 			{flipped && (
 				<CardOverlay
 					onClick={() => setFlipped(!flipped)}
-					title={props.title}
-					premiered={props.premiered}
-					tracklist={props.tracklist}
-					composers={props.composers}
+					musical={props.musical}
 				/>
 			)}
 		</div>
 	);
 }
 
-function CardOverlay(props: {
-	onClick: Function;
-	title: string;
-	premiered: Date;
-	tracklist: TrackDetails[];
-	composers: string[];
-}) {
+function CardOverlay(props: { onClick: Function; musical: AllMusicalData }) {
 	return (
-		<div
+		<article
 			className="h-full p-2 overflow-x-hidden overflow-y-auto bg-white cursor-auto bg-opacity-90"
 			onClick={() => props.onClick()}
 		>
-			<h1 className="text-2xl font-semibold text-center">
-				{props.title} ({props.premiered.getFullYear()})
-			</h1>
-			<h2 className="text-lg text-center">{props.composers.join(", ")}</h2>
+			<h2 className="text-2xl font-semibold text-center">
+				<a
+					href={props.musical.data.external_urls.spotify}
+					className="cursor-pointer"
+				>
+					{props.musical.info.title} (
+					{props.musical.info.premiered.getFullYear()})
+				</a>
+			</h2>
+			<h3 className="text-lg text-center">
+				{props.musical.info.composers.join(", ")}
+			</h3>
 			<ol className="pl-6 list-decimal">
-				{props.tracklist.map((track, index) => (
+				{props.musical.data.tracks.items.map((track, index) => (
 					<li key={index} className="">
 						<TrackItem track={track} />
 					</li>
 				))}
 			</ol>
-		</div>
+		</article>
 	);
 }
 
-function TrackItem(props: { track: TrackDetails }) {
+function TrackItem(props: { track: SpotifyApi.TrackObjectSimplified }) {
 	let timestamp =
-		Math.floor(props.track.length / 1000 / 60) +
+		Math.floor(props.track.duration_ms / 1000 / 60) +
 		":" +
-		Math.floor((props.track.length / 1000) % 60)
+		Math.floor((props.track.duration_ms / 1000) % 60)
 			.toString()
 			.padStart(2, "0");
 	return (
 		<div className="inline-flex flex-row justify-between w-full">
-			<a className="cursor-pointer" href={props.track.link} target="_blank">
-				{props.track.title}
+			<a
+				className="cursor-pointer"
+				href={props.track.external_urls.spotify}
+				target="_blank"
+			>
+				{props.track.name}
 			</a>
 			<p className="text-right">{timestamp}</p>
 		</div>
