@@ -8,7 +8,7 @@ export default function MusicalCard(props: { musical: AllMusicalData }) {
 	];
 	return (
 		<div
-			className={`flex flex-col overflow-hidden border-gray-800 rounded-lg shadow-lg cursor-pointer w-80 h-80 m-2 transform transition-transform ${
+			className={`flex flex-col overflow-hidden border-gray-800 rounded-lg shadow-lg cursor-pointer w-80 h-80 m-2 transform transition-transform hover:scale-105 ${
 				flipped ? "hover:border-0 duration-75" : `hover:border-2 ${tilt}`
 			}`}
 		>
