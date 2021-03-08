@@ -203,6 +203,12 @@ export const musicals: Musical[] = [
 		premiered: new Date("November 18, 1963"),
 		spotifyID: "2cDK1Eg3LONqzmRas1PpkM",
 	},
+	{
+		title: "In the Heights",
+		composers: ["Lin-Manuel Miranda"],
+		premiered: new Date("July 23, 2005"),
+		spotifyID: "3VPHalWocJfe7VfbEW60zg",
+	},
 ];
 
 export default musicals;
