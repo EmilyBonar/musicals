@@ -136,7 +136,7 @@ export const musicals: Musical[] = [
 		title: "Fiddler on the Roof",
 		composers: ["Jerry Bock", "Sheldon Harnick"],
 		premiered: new Date("1964"),
-		spotifyID: "06ZOoSKNVRocMIxCrZnl1v",
+		spotifyID: "18DzAOVbSrw9RjOk3oTnzj",
 	},
 	{
 		title: "Grease",
